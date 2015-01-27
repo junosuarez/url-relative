@@ -3,15 +3,24 @@
   "author": "jden <jason@denizac.org>",
   "version": "1.0.0",
   "description": "calculate RFC 1808 relative URLs (inverse of url.resolve)",
-  "keywords": ["url", "uri", "relative", "resolve"],
+  "keywords": [
+    "url",
+    "uri",
+    "relative",
+    "resolve"
+  ],
   "main": "index.js",
   "scripts": {
-    "test": "mochi"
+    "test": "tap --tap test/*"
   },
-  "repository": "git@github.com:jden/node-url-relative.git",
+  "repository": "git@github.com:jden/url-relative.git",
   "license": "ISC",
   "readmeFilename": "README.md",
   "devDependencies": {
-    "mochi": "0.3.0"
+    "tap": "^0.5.0"
+  },
+  "jshintConfig": {
+    "node": true,
+    "strict": false
   }
 }
