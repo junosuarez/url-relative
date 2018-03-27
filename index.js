@@ -19,6 +19,9 @@ function urlRelative (from, to) {
 
   var length = fromSegments.length - toSegments.length;
   if (length > 0) {
+    if (from.endsWith('/')) {
+      toSegments.unshift('..');
+    }
     while (length--) {
       toSegments.unshift('..');
     }
