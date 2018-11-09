@@ -1,3 +1,4 @@
+var url = require('url');
 var test = require('tap').test;
 
 var relative = require('../index');
@@ -68,4 +69,13 @@ test('divergent paths, equal length', function (t) {
   t.equal(
     relative('/a/b/c/d/e/f/','/a/b/c/g/h/j/'),
     '../../../g/h/j/');
+});
+
+test('identical', function (t) {
+  t.plan(2)
+  const u = 'http://a.com/b/c'
+  const rel = relative(u, u)
+  t.equal(rel, '')
+  // Resolve should be a noop
+  t.equal(url.resolve(u, rel), u)
 });

@@ -1,6 +1,10 @@
 var url = require('url');
 
 function urlRelative (from, to) {
+  if (from === to) {
+    return '';
+  }
+
   var fromUrl = url.parse(from);
   var toUrl = url.parse(to);
 
