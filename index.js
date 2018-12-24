@@ -8,6 +8,18 @@ function urlRelative (from, to) {
     return to;
   }
 
+  if (fromUrl.protocol !== toUrl.protocol) {
+    return to;
+  }
+
+  if (fromUrl.auth !== toUrl.auth) {
+    return to;
+  }
+
+  if (fromUrl.slashes !== toUrl.slashes) {
+    return to;
+  }
+
   // left to right, look for closest common path segment
   var fromSegments = fromUrl.pathname.substr(1).split('/');
   var toSegments = toUrl.pathname.substr(1).split('/');
