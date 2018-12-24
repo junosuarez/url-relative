@@ -69,3 +69,15 @@ test('divergent paths, equal length', function (t) {
     relative('/a/b/c/d/e/f/','/a/b/c/g/h/j/'),
     '../../../g/h/j/');
 });
+
+test('same paths', function (t) {
+  t.plan(2);
+  t.equal(
+    relative('https://a.com/a', 'https://a.com/a'),
+    'a'
+  );
+  t.equal(
+    relative('https://a.com/a/', 'https://a.com/a/'),
+    '.'
+  );
+})
