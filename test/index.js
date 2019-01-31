@@ -1,3 +1,4 @@
+var url = require('url');
 var test = require('tap').test;
 
 var relative = require('../index');
@@ -15,8 +16,8 @@ test('different protocol', function (t) {
 test('file protocol', function (t) {
   t.plan(1);
   t.equal(
-    relative('file:///a', 'file:///a'),
-    'a'
+    relative('file:///a', 'file:///b'),
+    'b'
   );
 });
 
@@ -88,14 +89,14 @@ test('divergent paths, equal length', function (t) {
     '../../../g/h/j/');
 });
 
-test('same paths', function (t) {
+test('identical', function (t) {
   t.plan(2);
   t.equal(
     relative('https://a.com/a', 'https://a.com/a'),
-    'a'
+    ''
   );
   t.equal(
     relative('https://a.com/a/', 'https://a.com/a/'),
-    '.'
+    ''
   );
-})
+});
