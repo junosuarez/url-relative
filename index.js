@@ -12,9 +12,29 @@ function urlRelative (from, to) {
     return to;
   }
 
+  if (fromUrl.protocol !== toUrl.protocol) {
+    return to;
+  }
+
+  if (fromUrl.auth !== toUrl.auth) {
+    return to;
+  }
+
+  if (fromUrl.slashes !== toUrl.slashes) {
+    return to;
+  }
+
   // left to right, look for closest common path segment
   var fromSegments = fromUrl.pathname.substr(1).split('/');
   var toSegments = toUrl.pathname.substr(1).split('/');
+
+  if (fromUrl.pathname === toUrl.pathname) {
+    if (toUrl.pathname[toUrl.pathname.length - 1] == '/') {
+      return '.';
+    } else {
+      return toSegments[toSegments.length - 1];
+    }
+  }
 
   while (fromSegments[0] === toSegments[0]) {
     fromSegments.shift();

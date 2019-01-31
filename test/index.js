@@ -3,6 +3,24 @@ var test = require('tap').test;
 
 var relative = require('../index');
 
+test('different protocol', function (t) {
+  t.plan(2);
+  t.equal(
+    relative('http://a.com:12/a', 'https://a.com:12/a'),
+    'https://a.com:12/a');
+  t.equal(
+    relative('http://a.com:12/a/', 'https://a.com:12/a/'),
+    'https://a.com:12/a/');
+});
+
+test('file protocol', function (t) {
+  t.plan(1);
+  t.equal(
+    relative('file:///a', 'file:///a'),
+    'a'
+  );
+});
+
 test('different domain', function (t) {
   t.plan(2);
   t.equal(
@@ -71,6 +89,7 @@ test('divergent paths, equal length', function (t) {
     '../../../g/h/j/');
 });
 
+
 test('identical', function (t) {
   t.plan(2)
   const u = 'http://a.com/b/c'
@@ -79,3 +98,16 @@ test('identical', function (t) {
   // Resolve should be a noop
   t.equal(url.resolve(u, rel), u)
 });
+
+test('same paths', function (t) {
+  t.plan(2);
+  t.equal(
+    relative('https://a.com/a', 'https://a.com/a'),
+    'a'
+  );
+  t.equal(
+    relative('https://a.com/a/', 'https://a.com/a/'),
+    '.'
+  );
+});
+
