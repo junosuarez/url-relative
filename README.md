@@ -1,6 +1,9 @@
 # url-relative
 calculate RFC 1808 relative URLs (inverse of url.resolve)
 
+## NOTE:
+I no longer am able to support this package; please use it at your own risk, as is. I recommend switching to an alternative.
+
 ## usage
 ```js
 var urlRelative = require('url-relative')
